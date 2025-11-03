@@ -1,0 +1,143 @@
+:root {
+  --bg: #f4f6fb;
+  --card: #fff;
+  --accent: #0ea5a4;
+  --muted: #6b7280;
+  font-family: Inter, Arial, sans-serif;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #111;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+.logo {
+  width: 140px;
+  height: auto;
+}
+.main-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr 360px;
+  gap: 18px;
+  padding: 18px;
+}
+.left-pane,
+.right-pane {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+.center-pane {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.video-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.video-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e9ef;
+}
+.video-input button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+
+.video-list select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e9ef;
+}
+
+.stat-card {
+  background: #f9fafb;
+  padding: 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+  display: inline-block;
+  min-width: 120px;
+}
+.stat-title {
+  font-size: 12px;
+  color: var(--muted);
+}
+.stat-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.summary {
+  margin-top: 12px;
+}
+.transcript-box {
+  max-height: 260px;
+  overflow: auto;
+  background: #fbfdff;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #eef2f6;
+  white-space: pre-wrap;
+}
+
+.chat-box {
+  height: 320px;
+  overflow: auto;
+  background: #fbfbfe;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #eef2f6;
+  margin-bottom: 8px;
+}
+.bubble {
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.user {
+  background: #e6fffb;
+  align-self: flex-end;
+}
+.ai {
+  background: #eef2ff;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e9ef;
+  margin-bottom: 8px;
+}
+button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+.placeholder {
+  padding: 20px;
+  color: var(--muted);
+}
