@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/api";
-import StatsCard from "./StatsCard";
 import SentimentChart from "./SentimentChart";
 
 export default function Dashboard({ videoId }) {
@@ -32,61 +31,87 @@ export default function Dashboard({ videoId }) {
     );
 
   return (
-    <div className="p-6 space-y-8 bg-slate-950 min-h-screen text-white transition-all duration-300">
+    <div className="p-6 space-y-6 bg-gray-50 min-h-screen transition-all duration-300">
       {/* 🏷️ Title */}
-      <h2 className="text-3xl font-bold text-white tracking-tight border-b border-slate-800 pb-3">
+      <h2 className="text-3xl font-bold text-gray-900 tracking-tight border-b border-gray-300 pb-3">
         {metrics.title}
       </h2>
 
-      {/* 🎥 Stats Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="bg-slate-900 hover:bg-slate-800 transition-all p-4 rounded-xl text-center shadow-md">
-          <p className="text-sm text-gray-400">Uploader</p>
-          <p className="text-lg font-semibold mt-1">{metrics.uploader}</p>
+      {/* 🎥 Stats - Horizontal Black Boxes */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-gray-900 rounded-lg shadow-lg p-5 flex items-center gap-3 border border-gray-700">
+          <span className="text-3xl">👤</span>
+          <div>
+            <p className="text-xs text-gray-400 font-medium mb-1">Uploader</p>
+            <p className="text-lg font-bold text-white">{metrics.uploader}</p>
+          </div>
         </div>
-        <div className="bg-slate-900 hover:bg-slate-800 transition-all p-4 rounded-xl text-center shadow-md">
-          <p className="text-sm text-gray-400">Duration (s)</p>
-          <p className="text-lg font-semibold mt-1">
-            {metrics.duration_seconds}
-          </p>
+
+        <div className="bg-gray-900 rounded-lg shadow-lg p-5 flex items-center gap-3 border border-gray-700">
+          <span className="text-3xl">⏱️</span>
+          <div>
+            <p className="text-xs text-gray-400 font-medium mb-1">
+              Duration (s)
+            </p>
+            <p className="text-lg font-bold text-white">
+              {metrics.duration_seconds}
+            </p>
+          </div>
         </div>
-        <div className="bg-slate-900 hover:bg-slate-800 transition-all p-4 rounded-xl text-center shadow-md">
-          <p className="text-sm text-gray-400">Views</p>
-          <p className="text-lg font-semibold mt-1">{metrics.view_count}</p>
+
+        <div className="bg-gray-900 rounded-lg shadow-lg p-5 flex items-center gap-3 border border-gray-700">
+          <span className="text-3xl">👁️</span>
+          <div>
+            <p className="text-xs text-gray-400 font-medium mb-1">Views</p>
+            <p className="text-lg font-bold text-white">
+              {metrics.view_count.toLocaleString()}
+            </p>
+          </div>
         </div>
-        <div className="bg-slate-900 hover:bg-slate-800 transition-all p-4 rounded-xl text-center shadow-md">
-          <p className="text-sm text-gray-400">Likes</p>
-          <p className="text-lg font-semibold mt-1">{metrics.like_count}</p>
+
+        <div className="bg-gray-900 rounded-lg shadow-lg p-5 flex items-center gap-3 border border-gray-700">
+          <span className="text-3xl">❤️</span>
+          <div>
+            <p className="text-xs text-gray-400 font-medium mb-1">Likes</p>
+            <p className="text-lg font-bold text-white">
+              {metrics.like_count.toLocaleString()}
+            </p>
+          </div>
         </div>
       </div>
 
       {/* 🧠 Summary */}
-      <section className="bg-slate-900 p-6 rounded-xl shadow-md">
-        <h3 className="text-xl font-semibold mb-3 border-b border-slate-800 pb-1">
-          Summary
+      <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 className="text-xl font-semibold mb-3 text-gray-900 flex items-center gap-2">
+          <span className="text-2xl">📝</span> Summary
         </h3>
-        <p className="text-gray-300 leading-relaxed">{metrics.summary}</p>
+        <p className="text-gray-700 leading-relaxed">{metrics.summary}</p>
       </section>
 
       {/* ❤️ Sentiment */}
-      <section className="bg-slate-900 p-6 rounded-xl shadow-md">
-        <h3 className="text-xl font-semibold mb-3 border-b border-slate-800 pb-1">
-          Sentiment Analysis
+      <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 className="text-xl font-semibold mb-3 text-gray-900 flex items-center gap-2">
+          <span className="text-2xl">💭</span> Sentiment Analysis
         </h3>
-        <p className="text-gray-300 mb-4">
-          {metrics.sentiment.label} ({metrics.sentiment.score.toFixed(2)})
-        </p>
-        <div className="h-72 bg-slate-800 rounded-lg p-3">
+        <div className="inline-block bg-gray-100 px-4 py-2 rounded-lg mb-4 border border-gray-300">
+          <span className="text-lg font-semibold text-gray-900">
+            {metrics.sentiment.label}
+          </span>
+          <span className="text-gray-600 ml-2">
+            ({(metrics.sentiment.score * 100).toFixed(0)}%)
+          </span>
+        </div>
+        <div className="h-80 rounded-lg">
           <SentimentChart sentimentData={metrics.sentiment_breakdown} />
         </div>
       </section>
 
       {/* 📝 Transcript */}
-      <section className="bg-slate-900 p-6 rounded-xl shadow-md">
-        <h3 className="text-xl font-semibold mb-3 border-b border-slate-800 pb-1">
-          Transcript
+      <section className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 className="text-xl font-semibold mb-3 text-gray-900 flex items-center gap-2">
+          <span className="text-2xl">📄</span> Transcript
         </h3>
-        <div className="bg-slate-800 p-4 rounded-md text-gray-300 max-h-64 overflow-y-auto leading-relaxed">
+        <div className="bg-gray-50 p-5 rounded-lg text-gray-800 max-h-64 overflow-y-auto leading-relaxed border border-gray-200">
           {metrics.transcript.text}
         </div>
       </section>

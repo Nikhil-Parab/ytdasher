@@ -36,10 +36,7 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
 }
 .center-pane {
-  background: var(--card);
-  padding: 18px;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  /* Let Dashboard.jsx control its own styling */
 }
 
 .video-input {
