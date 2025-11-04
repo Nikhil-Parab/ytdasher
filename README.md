@@ -1,30 +1,62 @@
-## ⚙️ Environment Setup
+# 🚀 YouTube Media Dashboard (React + FastAPI)
 
-### 🧩 1️⃣ Backend (FastAPI)
+This repository contains a **React + Vite** frontend and a **FastAPI** backend for a YouTube/media monitoring dashboard.  
+Everything you need to run locally and deploy (Vercel + Render) is included below.
 
-#### 🔧 Create and activate a virtual environment
+---
+
+## 📁 Repository Layout
+
+```
+ytdasher/
+├── backend/
+│   ├── api_server.py           # main FastAPI app (example)
+│   ├── requirements.txt        # Python dependencies (sample)
+│   ├── firebase_credentials.json
+│   ├── .env                    # environment variables (NOT committed to git)
+│   └── ... other backend files
+└── frontend/
+    ├── package.json
+    ├── vite.config.js
+    ├── src/
+    │   ├── main.jsx
+    │   ├── App.jsx
+    │   ├── api/
+    │   │   └── api.js
+    │   └── ... other frontend files
+    └── dist/ (after build)
+```
+
+---
+
+## ⚠️ Before you start
+
+Install these on your machine:
+
+- Python 3.8+ — https://www.python.org/downloads/
+- Node.js (v16+) — https://nodejs.org/
+- npm (bundled with Node) or yarn
+- Git — https://git-scm.com/downloads
+- FFmpeg — https://ffmpeg.org/download.html
+
+---
+
+## 🔧 Backend — FastAPI (Full instructions)
+
+### 1. Create & activate virtual environment
+
 ```bash
 cd backend
 python -m venv venv
-Activate it
-
-Windows:
-
-bash
-Copy code
+# Windows
 venv\Scripts\activate
-Mac/Linux:
-
-bash
-Copy code
+# Mac / Linux
 source venv/bin/activate
-📦 Install backend dependencies
-bash
-Copy code
-pip install -r requirements.txt
-✅ requirements.txt
-makefile
-Copy code
+```
+
+### 2. requirements.txt (paste into backend/requirements.txt)
+
+```
 fastapi==0.95.2
 uvicorn[standard]==0.22.0
 yt-dlp==2024.10.22
@@ -44,53 +76,94 @@ torch==2.2.2
 tqdm==4.66.1
 scikit-learn==1.3.2
 openai==1.3.0
-(These extra libs like requests, torch, tqdm, scikit-learn, and openai are often used across AI modules and API pipelines.)
+```
 
-🧾 .env Example (Backend)
-Create a .env file in /backend:
+### 3. Create `.env` file in backend/
 
-ini
-Copy code
+```
+# Firebase Configuration
 FIREBASE_CREDENTIALS=C:/Github/ytdasher/backend/firebase_credentials.json
 FIREBASE_PROJECT_ID=media-monitoring-dashboa-e0c3b
 FIREBASE_STORAGE_BUCKET=media-monitoring-dashboa-e0c3b.appspot.com
 FIREBASE_DATABASE_URL=https://media-monitoring-dashboa-e0c3b-default-rtdb.firebaseio.com
 
+# Server Configuration
 HOST=127.0.0.1
 PORT=8000
 CORS_ORIGIN=http://localhost:5173
 DEBUG=True
-🚀 Run Backend
-bash
-Copy code
-uvicorn api_server:app --reload
-🟢 Backend runs at: http://127.0.0.1:8000
+```
 
-🌐 2️⃣ Frontend (React + Vite)
-🧱 Install frontend dependencies
-bash
-Copy code
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run backend
+
+```bash
+uvicorn api_server:app --reload
+```
+
+Backend runs at: `http://127.0.0.1:8000`
+
+---
+
+## 🌐 Frontend — React + Vite
+
+### 1. Install dependencies
+
+```bash
 cd frontend
 npm install
-💡 Development server
-bash
-Copy code
+```
+
+### 2. Run in development mode
+
+```bash
 npm run dev
-🔗 App runs at: http://localhost:5173
+```
 
-⚙️ Build for production
-bash
-Copy code
-npm run build
-🔗 Frontend API Configuration
-In frontend/src/api/api.js:
+Frontend runs at: `http://localhost:5173`
 
-javascript
-Copy code
+### 3. API connection setup
+
+Edit `frontend/src/api/api.js`:
+
+```javascript
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000", // Change to backend URL if hosted elsewhere
+  baseURL: "http://127.0.0.1:8000", // change this for production
 });
 
 export default api;
+```
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+Output will be stored in `dist/`.
+
+---
+
+## ✅ Summary
+
+- Backend: **FastAPI** hosted on Render
+- Frontend: **React + Vite** hosted on Vercel
+- Database/Storage: **Firebase**
+- AI Models: **Sentence Transformers**, **Whisper**, **Transformers**
+- Media Processing: **FFmpeg**, **yt-dlp**
+
+Everything ready for local dev and cloud deployment. 🎯
+
+---
+
+## 👨‍💻 Author
+
+**Nikhil P. Arab**  
+Media Monitoring Dashboard — 2025
